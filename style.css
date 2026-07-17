@@ -109,3 +109,54 @@ cursor:pointer;
 .action button:hover{
 background:#16a34a;
 }
+.history{
+background:#1e293b;
+border-radius:16px;
+padding:16px;
+margin-top:16px;
+margin-bottom:20px;
+}
+
+.history h2{
+font-size:16px;
+margin-bottom:12px;
+font-weight:600;
+}
+
+.empty{
+text-align:center;
+font-size:13px;
+color:#94a3b8;
+padding:14px 0;
+}
+
+.item{
+background:#0f172a;
+border-radius:12px;
+padding:12px;
+margin-bottom:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.item .left{
+display:flex;
+flex-direction:column;
+}
+
+.item .title{
+font-size:14px;
+font-weight:600;
+}
+
+.item .time{
+font-size:11px;
+color:#94a3b8;
+margin-top:2px;
+}
+
+.item .amount{
+font-size:15px;
+font-weight:700;
+}
