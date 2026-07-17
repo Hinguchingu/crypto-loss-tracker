@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Crypto Loss Tracker</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Crypto Loss Tracker</h1>
+
+<div class="loss-card">
+
+<h2>CURRENT LOSS</h2>
+
+<div id="loss">₹317108.65</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>INR Deposit</h3>
+
+<p id="deposit">431200</p>
+
+</div>
+
+<div class="card">
+
+<h3>Binance Buy</h3>
+
+<p id="buyTotal">288500</p>
+
+</div>
+
+<div class="card">
+
+<h3>Binance Sale</h3>
+
+<p id="saleTotal">140850</p>
+
+</div>
+
+<div class="card">
+
+<h3>Withdrawal</h3>
+
+<p id="withdraw">261741.35</p>
+
+</div>
+
+</div>
+
+<div class="entry">
+
+<h2>BUY</h2>
+
+<input type="number" id="buyInput" placeholder="Enter Buy">
+
+<button onclick="addBuy()">Save Buy</button>
+
+</div>
+
+<div class="entry">
+
+<h2>SELL</h2>
+
+<input type="number" id="sellInput" placeholder="Enter Sell">
+
+<button onclick="addSell()">Save Sell</button>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
