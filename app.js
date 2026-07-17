@@ -1,80 +1,63 @@
-// ===== Initial Data =====
 let deposit = Number(localStorage.getItem("deposit")) || 431200;
 let buy = Number(localStorage.getItem("buy")) || 288500;
 let sale = Number(localStorage.getItem("sale")) || 140850;
 let withdrawal = Number(localStorage.getItem("withdrawal")) || 261741.35;
 
-// ===== Update Screen =====
-function updateScreen() {
-
-document.getElementById("deposit").innerHTML =
-"₹"+deposit.toLocaleString();
-
-document.getElementById("buyTotal").innerHTML =
-"₹"+buy.toLocaleString();
-
-document.getElementById("saleTotal").innerHTML =
-"₹"+sale.toLocaleString();
-
-document.getElementById("withdraw").innerHTML =
-"₹"+withdrawal.toLocaleString();
-
-let loss =
-(deposit + buy - sale) - withdrawal;
-
-document.getElementById("loss").innerHTML =
-"₹"+loss.toLocaleString(undefined,{maximumFractionDigits:2});
-
-// Save
-localStorage.setItem("deposit",deposit);
-localStorage.setItem("buy",buy);
-localStorage.setItem("sale",sale);
-localStorage.setItem("withdrawal",withdrawal);
-
+function format(value){
+    return "₹" + value.toLocaleString("en-IN", {
+        maximumFractionDigits:2
+    });
 }
 
-// ===== BUY =====
+function updateScreen(){
+
+    document.getElementById("deposit").textContent = format(deposit);
+    document.getElementById("buyTotal").textContent = format(buy);
+    document.getElementById("saleTotal").textContent = format(sale);
+    document.getElementById("withdraw").textContent = format(withdrawal);
+
+    let loss = (deposit + buy - sale) - withdrawal;
+
+    document.getElementById("loss").textContent = format(loss);
+
+    localStorage.setItem("deposit", deposit);
+    localStorage.setItem("buy", buy);
+    localStorage.setItem("sale", sale);
+    localStorage.setItem("withdrawal", withdrawal);
+}
 
 function addBuy(){
 
-let amount =
-Number(document.getElementById("buyInput").value);
+    let amount = Number(document.getElementById("buyInput").value);
 
-if(!amount || amount<=0){
-alert("Enter Buy Amount");
-return;
+    if(amount <= 0 || isNaN(amount)){
+        alert("Enter a valid Buy amount");
+        return;
+    }
+
+    buy += amount;
+    deposit += amount;
+
+    document.getElementById("buyInput").value = "";
+
+    updateScreen();
 }
-
-buy += amount;
-
-deposit += amount;
-
-document.getElementById("buyInput").value="";
-
-updateScreen();
-
-}
-
-// ===== SELL =====
 
 function addSell(){
 
-let amount =
-Number(document.getElementById("sellInput").value);
+    let amount = Number(document.getElementById("sellInput").value);
 
-if(!amount || amount<=0){
-alert("Enter Sell Amount");
-return;
-}
+    if(amount <= 0 || isNaN(amount)){
+        alert("Enter a valid Sell amount");
+        return;
+    }
 
-sale += amount;
+    sale += amount;
+    withdrawal += amount;
 
-withdrawal += amount;
+    document.getElementById("sellInput").value = "";
 
-document.getElementById("sellInput").value="";
-
-updateScreen();
-
+    updateScreen();
 }
 
 updateScreen();
