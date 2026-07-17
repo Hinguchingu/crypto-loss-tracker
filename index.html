@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Crypto Loss Tracker</title>
 
 <link rel="stylesheet" href="style.css">
@@ -11,73 +13,77 @@
 
 <body>
 
-<div class="container">
+<div class="app">
+
+<header>
 
 <h1>Crypto Loss Tracker</h1>
 
-<div class="loss-card">
+<p>Your Personal Portfolio</p>
 
-<h2>CURRENT LOSS</h2>
+</header>
 
-<div id="loss">₹317108.65</div>
+<section class="lossCard">
 
+<span>Current Loss</span>
+
+<h2 id="loss">₹0</h2>
+
+</section>
+
+<section class="grid">
+
+<div class="box">
+<label>Deposit</label>
+<h3 id="deposit">0</h3>
 </div>
 
-<div class="cards">
-
-<div class="card">
-
-<h3>INR Deposit</h3>
-
-<p id="deposit">431200</p>
-
+<div class="box">
+<label>Buy</label>
+<h3 id="buyTotal">0</h3>
 </div>
 
-<div class="card">
-
-<h3>Binance Buy</h3>
-
-<p id="buyTotal">288500</p>
-
+<div class="box">
+<label>Sale</label>
+<h3 id="saleTotal">0</h3>
 </div>
 
-<div class="card">
-
-<h3>Binance Sale</h3>
-
-<p id="saleTotal">140850</p>
-
+<div class="box">
+<label>Withdrawal</label>
+<h3 id="withdraw">0</h3>
 </div>
 
-<div class="card">
+</section>
 
-<h3>Withdrawal</h3>
+<section class="action">
 
-<p id="withdraw">261741.35</p>
+<input
+type="number"
+id="buyInput"
+placeholder="Buy Amount">
 
-</div>
+<button onclick="addBuy()">
 
-</div>
+Add Buy
 
-<div class="entry">
+</button>
 
-<h2>BUY</h2>
+</section>
 
-<input type="number" id="buyInput" placeholder="Enter Buy">
+<section class="action">
 
-<button onclick="addBuy()">Save Buy</button>
+<input
+type="number"
+id="sellInput"
+placeholder="Sell Amount">
 
-</div>
+<button onclick="addSell()">
 
-<div class="entry">
+Add Sell
 
-<h2>SELL</h2>
+</button>
 
-<input type="number" id="sellInput" placeholder="Enter Sell">
-
-<button onclick="addSell()">Save Sell</button>
-
-</div>
+</section>
 
 <script src="app.js"></script>
 
