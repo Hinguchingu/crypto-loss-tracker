@@ -1,4 +1,5 @@
 let deposit = Number(localStorage.getItem("deposit")) || 431200;
+let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 let buy = Number(localStorage.getItem("buy")) || 288500;
 let sale = Number(localStorage.getItem("sale")) || 140850;
 let withdrawal = Number(localStorage.getItem("withdrawal")) || 261741.35;
@@ -77,17 +78,13 @@ function addBuy(){
     buy+=amount;
     deposit+=amount;
 
-    history.push({
-        type:"BUY",
-        amount:amount,
-        time:new Date().toLocaleString()
-    });
+    transactions.push({
+    type: "BUY",
+    amount: amount,
+    time: new Date().toLocaleString()
+});
 
-    document.getElementById("buyInput").value="";
-
-    updateScreen();
-
-}
+saveTransactions();
 
 function addSell(){
 
@@ -101,12 +98,13 @@ function addSell(){
     sale+=amount;
     withdrawal+=amount;
 
-    history.push({
-        type:"SELL",
-        amount:amount,
-        time:new Date().toLocaleString()
-    });
+    transactions.push({
+    type: "SELL",
+    amount: amount,
+    time: new Date().toLocaleString()
+});
 
+saveTransactions();
     document.getElementById("sellInput").value="";
 
     updateScreen();
@@ -114,3 +112,47 @@ function addSell(){
 }
 
 updateScreen();
+function saveTransactions() 
+function renderTransactions() {
+function deleteTransaction(index) {
+
+    transactions.splice(index, 1);
+
+    saveTransactions();
+
+    renderTransactions();
+
+}
+    const history = document.getElementById("history");
+
+    if (transactions.length === 0) {
+        history.innerHTML = `
+            <p class="empty">No Transactions Yet</p>
+        `;
+        return;
+    }
+
+    history.innerHTML = "";
+
+    transactions.forEach((item, index) => {
+
+        history.innerHTML += `
+            <div class="transaction">
+                <strong>${item.type}</strong><br>
+                Coin: ${item.coin}<br>
+                Price: ${item.price}<br>
+                Amount: ${item.amount}<br><br>
+
+                <button onclick="deleteTransaction(${index})">
+                    Delete
+                </button>
+            </div>
+            <hr>
+        `;
+    });
+
+}
+
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+}
+renderTransactions();
